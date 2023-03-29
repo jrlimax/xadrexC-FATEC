@@ -12,6 +12,16 @@ char tabuleiro[9][9] = {
     'P', 'P', '8', 'T', 'C', 'B', 'Q', 'R', 'B', 'C', 'T',
 };
 
+void limparTabuleiro() {
+  for (int linha = 0; linha < 9; linha++) {
+    for (int coluna = 0; coluna < 9; coluna++) {
+      if (tabuleiro[linha][coluna] == 'X') {
+        tabuleiro[linha][coluna] = ' ';
+      }
+    }
+  }
+}
+
 void colocarTabuleiro() {
 
   for (int linha = 0; linha < 9; linha++) {
@@ -42,6 +52,8 @@ void movimentarPeao(int linhaPeca, int colunaPeca) {
 
   colocarTabuleiro();
 
+  std::cout << std::endl;
+
   std::cout << "Digite a linha destino: ";
   std::cin >> destinoLinha;
 
@@ -51,6 +63,7 @@ void movimentarPeao(int linhaPeca, int colunaPeca) {
   if (tabuleiro[destinoLinha][destinoColuna] == 'X') {
     tabuleiro[destinoLinha][destinoColuna] = 'P';
     tabuleiro[linhaPeca][colunaPeca] = ' ';
+    limparTabuleiro();
   }
 }
 
