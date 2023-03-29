@@ -1,6 +1,6 @@
 #include <cstdio>
 #include <iostream>
-#include <iterator>
+#include <string.h>
 
   char tabuleiro[9][9]={
 
@@ -37,6 +37,16 @@ void movimentarPeao(int linhaPeca, int colunaPeca){
     
     int destinoLinha;
     int destinoColuna;
+    char teste = '7';
+
+    if(*tabuleiro[linhaPeca] == teste ){
+      tabuleiro[linhaPeca - 1][colunaPeca] = 'X';
+      tabuleiro[linhaPeca - 2][colunaPeca] = 'X';
+  }
+    
+    colocarTabuleiro();  
+
+    
 
     std::cout << "Digite a linha destino: ";
     std::cin >> destinoLinha;
@@ -44,7 +54,7 @@ void movimentarPeao(int linhaPeca, int colunaPeca){
     std::cout << "Digite a coluna destino: ";
     std::cin >> destinoColuna;
 
-      if (tabuleiro[destinoLinha][destinoColuna] == ' ') {
+      if (tabuleiro[destinoLinha][destinoColuna] == 'X') {
         tabuleiro[destinoLinha][destinoColuna] = 'P';
         tabuleiro[linhaPeca][colunaPeca] = ' ';
       }
