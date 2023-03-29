@@ -4,8 +4,8 @@
 
 char tabuleiro[9][9] = {
 
-    ' ', '1', '2', '3', '4', '5', '6', '7', '8', '1', 'T', 'C', 'B', 'Q',
-    'R', 'B', 'C', 'T', '2', 'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P', '3',
+    ' ', '1', '2', '3', '4', '5', '6', '7', '8', '1', 't', 'c', 'b', 'q',
+    'r', 'b', 'c', 't', '2', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', '3',
     ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '4', ' ', ' ', ' ', ' ', ' ',
     ' ', ' ', ' ', '5', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '6', ' ',
     ' ', ' ', ' ', ' ', ' ', ' ', ' ', '7', 'P', 'P', 'P', 'P', 'P', 'P',
@@ -39,15 +39,17 @@ void colocarTabuleiro() {
   std::cout << std::endl;
 }
 
-void movimentarPeao(int linhaPeca, int colunaPeca) {
+void movimentarPeaoBranco(int linhaPeca, int colunaPeca) {
 
   int destinoLinha;
   int destinoColuna;
-  char teste = '7';
+  char linhaInicial = '7';
 
-  if (*tabuleiro[linhaPeca] == teste) {
+  if (*tabuleiro[linhaPeca] == linhaInicial) {
     tabuleiro[linhaPeca - 1][colunaPeca] = 'X';
     tabuleiro[linhaPeca - 2][colunaPeca] = 'X';
+  } else {
+    tabuleiro[linhaPeca - 1][colunaPeca] = 'X';
   }
 
   colocarTabuleiro();
@@ -69,22 +71,29 @@ void movimentarPeao(int linhaPeca, int colunaPeca) {
 
 int main() {
 
-  int linhaPeca;
-  int colunaPeca;
+  int i = 0;
 
-  colocarTabuleiro();
+  do {
 
-  std::cout << std::endl;
+    int linhaPeca;
+    int colunaPeca;
 
-  std::cout << "Digite a linha da peça: ";
-  std::cin >> linhaPeca;
+    colocarTabuleiro();
 
-  std::cout << "Digite a coluna da peça: ";
-  std::cin >> colunaPeca;
+    std::cout << std::endl;
 
-  if (tabuleiro[linhaPeca][colunaPeca] == 'P') {
-    movimentarPeao(linhaPeca, colunaPeca);
-  }
+    std::cout << "Digite a linha da peça: ";
+    std::cin >> linhaPeca;
 
-  colocarTabuleiro();
+    std::cout << "Digite a coluna da peça: ";
+    std::cin >> colunaPeca;
+
+    if (tabuleiro[linhaPeca][colunaPeca] == 'P') {
+      movimentarPeaoBranco(linhaPeca, colunaPeca);
+    }
+
+    colocarTabuleiro();
+
+    i++;
+  } while (i < 6);
 }
