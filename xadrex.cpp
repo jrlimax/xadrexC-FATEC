@@ -1,7 +1,4 @@
-#include <cstdio>
 #include <iostream>
-#include <ostream>
-#include <string.h>
 
 char tabuleiro[9][9] = {
 
@@ -47,11 +44,19 @@ void movimentarPeaoBranco(int linhaPeca, int colunaPeca) {
   char linhaInicial = '7';
   int i = 0;
 
-  if (*tabuleiro[linhaPeca] == linhaInicial) {
+  if (*tabuleiro[linhaPeca] == linhaInicial &&
+      tabuleiro[linhaPeca - 1][colunaPeca] == ' ' &&
+      tabuleiro[linhaPeca - 2][colunaPeca] == ' ') {
     tabuleiro[linhaPeca - 1][colunaPeca] = 'X';
     tabuleiro[linhaPeca - 2][colunaPeca] = 'X';
-  } else {
+  } else if (tabuleiro[linhaPeca - 1][colunaPeca] == ' ') {
     tabuleiro[linhaPeca - 1][colunaPeca] = 'X';
+  //} else if(a){
+
+  } else {
+    std::cout << "Movimento invalido.";
+    std::cout << std::endl;
+    return;
   }
 
   colocarTabuleiro();
