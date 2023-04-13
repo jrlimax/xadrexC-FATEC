@@ -5,7 +5,7 @@ char tabuleiro[9][9] = {
     ' ', '1', '2', '3', '4', '5', '6', '7', '8', '1', 't', 'c', 'b', 'q',
     'r', 'b', 'c', 't', '2', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', '3',
     ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '4', ' ', ' ', ' ', ' ', ' ',
-    ' ', ' ', ' ', '5', ' ', ' ', ' ', 'T', ' ', ' ', ' ', ' ', '6', ' ',
+    ' ', ' ', ' ', '5', ' ', ' ', ' ', 'b', ' ', ' ', ' ', ' ', '6', ' ',
     ' ', ' ', ' ', ' ', ' ', ' ', ' ', '7', ' ', 'P', 'P', 'P', 'P', 'P',
     'P', 'P', '8', ' ', 'C', 'B', 'Q', 'R', 'B', 'C', 'T',
 };
@@ -70,6 +70,37 @@ void validarPosicao(int linhaPeca, int colunaPeca) {
   }
 }
 
+void movimentarBispo(int linhaPeca, int colunaPeca) {
+
+  int i = 1;
+
+  while (tabuleiro[linhaPeca + i][colunaPeca + i] == ' ') {
+    tabuleiro[linhaPeca + i][colunaPeca + i] = 'X';
+    i++;
+  }
+
+  i = 1;
+
+  while (tabuleiro[linhaPeca - i][colunaPeca + i] == ' ') {
+    tabuleiro[linhaPeca - i][colunaPeca + i] = 'X';
+    i++;
+  }
+
+  i = 1;
+
+  while (tabuleiro[linhaPeca - i][colunaPeca - i] == ' ') {
+    tabuleiro[linhaPeca - i][colunaPeca - i] = 'X';
+    i++;
+  }
+
+  i = 1;
+
+  while (tabuleiro[linhaPeca + i][colunaPeca - i] == ' ') {
+    tabuleiro[linhaPeca + i][colunaPeca - i] = 'X';
+    i++;
+  }
+}
+
 void movimentarTorre(int linhaPeca, int colunaPeca) {
 
   int contador = 1;
@@ -119,9 +150,20 @@ void movimentarCavalo(int linhaPeca, int colunaPeca) {
   }
 }
 
+//PEÇAS BRANCAS
+
 void movimentarCavaloBranco(int linhaPeca, int colunaPeca) {
 
   movimentarCavalo(linhaPeca, colunaPeca);
+
+  colocarTabuleiro();
+
+  validarPosicao(linhaPeca, colunaPeca);
+}
+
+void movimentarBispoBranco(int linhaPeca, int colunaPeca) {
+
+  movimentarBispo(linhaPeca, colunaPeca);
 
   colocarTabuleiro();
 
@@ -156,6 +198,29 @@ void movimentarPeaoBranco(int linhaPeca, int colunaPeca) {
 void movimentarTorreBranca(int linhaPeca, int colunaPeca) {
 
   movimentarTorre(linhaPeca, colunaPeca);
+
+  colocarTabuleiro();
+
+  validarPosicao(linhaPeca, colunaPeca);
+}
+
+// PEÇAS PRETAS
+
+
+void movimentarBispoPreto(int linhaPeca, int colunaPeca) {
+
+  movimentarBispo(linhaPeca, colunaPeca);
+
+  colocarTabuleiro();
+
+  validarPosicao(linhaPeca, colunaPeca);
+}
+
+
+
+void movimentarCavaloPreto(int linhaPeca, int colunaPeca) {
+
+  movimentarCavalo(linhaPeca, colunaPeca);
 
   colocarTabuleiro();
 
@@ -236,7 +301,15 @@ int main() {
     }
 
     if (tabuleiro[linhaPeca][colunaPeca] == 'c') {
-      movimentarCavaloBranco(linhaPeca, colunaPeca);
+      movimentarCavaloPreto(linhaPeca, colunaPeca);
+    }
+
+    if (tabuleiro[linhaPeca][colunaPeca] == 'B') {
+      movimentarBispoBranco(linhaPeca, colunaPeca);
+    }
+
+    if (tabuleiro[linhaPeca][colunaPeca] == 'b') {
+      movimentarBispoBranco(linhaPeca, colunaPeca);
     }
 
     colocarTabuleiro();
