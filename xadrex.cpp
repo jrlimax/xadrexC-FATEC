@@ -160,7 +160,14 @@ void movimentarPeaoPreto(int linhaPeca, int colunaPeca) {
   validarPosicao(linhaPeca, colunaPeca);
 }
 
-void movimentarTorrePreta(int linhaPeca, int colunaPeca) {}
+void movimentarTorrePreta(int linhaPeca, int colunaPeca) {
+
+  movimentarTorre(linhaPeca, colunaPeca);
+
+  colocarTabuleiro();
+
+  validarPosicao(linhaPeca, colunaPeca);
+}
 
 int main() {
 
