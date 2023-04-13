@@ -5,9 +5,9 @@ char tabuleiro[9][9] = {
     ' ', '1', '2', '3', '4', '5', '6', '7', '8', '1', 't', 'c', 'b', 'q',
     'r', 'b', 'c', 't', '2', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', '3',
     ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '4', ' ', ' ', ' ', ' ', ' ',
-    ' ', ' ', ' ', '5', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '6', ' ',
-    ' ', ' ', ' ', ' ', ' ', ' ', ' ', '7', 'P', 'P', 'P', 'P', 'P', 'P',
-    'P', 'P', '8', 'T', 'C', 'B', 'Q', 'R', 'B', 'C', 'T',
+    ' ', ' ', ' ', '5', ' ', ' ', ' ', 'T', ' ', ' ', ' ', ' ', '6', ' ',
+    ' ', ' ', ' ', ' ', ' ', ' ', ' ', '7', ' ', 'P', 'P', 'P', 'P', 'P',
+    'P', 'P', '8', ' ', 'C', 'B', 'Q', 'R', 'B', 'C', 'T',
 };
 
 void limparTabuleiro() {
@@ -37,6 +37,38 @@ void colocarTabuleiro() {
   std::cout << std::endl;
 }
 
+void movimentarTorre(int linhaPeca, int colunaPeca){
+  int contador = 1;
+
+  while(tabuleiro[linhaPeca + contador][colunaPeca] == ' '){
+    tabuleiro[linhaPeca + contador][colunaPeca] = 'X';
+    contador++;
+  }
+
+  contador = 1;
+
+  while(tabuleiro[linhaPeca - contador][colunaPeca] == ' '){
+    tabuleiro[linhaPeca - contador][colunaPeca] = 'X';
+    contador++;
+  }
+
+  contador = 1;
+
+  while(tabuleiro[linhaPeca][colunaPeca - contador] == ' '){
+    tabuleiro[linhaPeca][colunaPeca - contador] = 'X';
+    contador++;
+  }
+
+  contador = 1;
+
+  while(tabuleiro[linhaPeca][colunaPeca + contador] == ' '){
+    tabuleiro[linhaPeca][colunaPeca + contador] = 'X';
+    contador++;
+  }
+
+
+}
+
 void movimentarPeaoBranco(int linhaPeca, int colunaPeca) {
 
   int destinoLinha;
@@ -51,7 +83,6 @@ void movimentarPeaoBranco(int linhaPeca, int colunaPeca) {
     tabuleiro[linhaPeca - 2][colunaPeca] = 'X';
   } else if (tabuleiro[linhaPeca - 1][colunaPeca] == ' ') {
     tabuleiro[linhaPeca - 1][colunaPeca] = 'X';
-    //} else if(a){
 
   } else {
     std::cout << "Movimento invalido.";
@@ -90,6 +121,38 @@ void movimentarPeaoBranco(int linhaPeca, int colunaPeca) {
 }
 
 void movimentarTorreBranca(int linhaPeca, int colunaPeca) {
+  
+  int destinoLinha;
+  int destinoColuna;
+  int i = 0;
+  
+  movimentarTorre(linhaPeca,colunaPeca);
+  colocarTabuleiro();
+
+  do {
+
+    if (i > 0) {
+      std::cout << "Movimento Invalido, escolha uma casa X.";
+      std::cout << std::endl;
+    }
+
+    std::cout << std::endl;
+
+    std::cout << "Digite a linha destino: ";
+    std::cin >> destinoLinha;
+
+    std::cout << "Digite a coluna destino: ";
+    std::cin >> destinoColuna;
+
+    i++;
+
+  } while (tabuleiro[destinoLinha][destinoColuna] != 'X');
+
+  if (tabuleiro[destinoLinha][destinoColuna] == 'X') {
+    tabuleiro[destinoLinha][destinoColuna] = 'T';
+    tabuleiro[linhaPeca][colunaPeca] = ' ';
+    limparTabuleiro();
+  }
 }
 
 void movimentarPeaoPreto(int linhaPeca, int colunaPeca) {
@@ -106,7 +169,6 @@ void movimentarPeaoPreto(int linhaPeca, int colunaPeca) {
     tabuleiro[linhaPeca + 2][colunaPeca] = 'X';
   } else if (tabuleiro[linhaPeca + 1][colunaPeca] == ' ') {
     tabuleiro[linhaPeca + 1][colunaPeca] = 'X';
-    //} else if(a){
 
   } else {
     std::cout << "Movimento invalido.";
