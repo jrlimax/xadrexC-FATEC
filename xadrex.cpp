@@ -51,7 +51,7 @@ void movimentarPeaoBranco(int linhaPeca, int colunaPeca) {
     tabuleiro[linhaPeca - 2][colunaPeca] = 'X';
   } else if (tabuleiro[linhaPeca - 1][colunaPeca] == ' ') {
     tabuleiro[linhaPeca - 1][colunaPeca] = 'X';
-  //} else if(a){
+    //} else if(a){
 
   } else {
     std::cout << "Movimento invalido.";
@@ -89,6 +89,64 @@ void movimentarPeaoBranco(int linhaPeca, int colunaPeca) {
   }
 }
 
+void movimentarTorreBranca(int linhaPeca, int colunaPeca) {
+}
+
+void movimentarPeaoPreto(int linhaPeca, int colunaPeca) {
+
+  int destinoLinha;
+  int destinoColuna;
+  char linhaInicial = '2';
+  int i = 0;
+
+  if (*tabuleiro[linhaPeca] == linhaInicial &&
+      tabuleiro[linhaPeca + 1][colunaPeca] == ' ' &&
+      tabuleiro[linhaPeca + 2][colunaPeca] == ' ') {
+    tabuleiro[linhaPeca + 1][colunaPeca] = 'X';
+    tabuleiro[linhaPeca + 2][colunaPeca] = 'X';
+  } else if (tabuleiro[linhaPeca + 1][colunaPeca] == ' ') {
+    tabuleiro[linhaPeca + 1][colunaPeca] = 'X';
+    //} else if(a){
+
+  } else {
+    std::cout << "Movimento invalido.";
+    std::cout << std::endl;
+    return;
+  }
+
+  colocarTabuleiro();
+
+  std::cout << std::endl;
+
+  do {
+
+    if (i > 0) {
+      std::cout << "Movimento Invalido, escolha uma casa X.";
+      std::cout << std::endl;
+    }
+
+    std::cout << std::endl;
+
+    std::cout << "Digite a linha destino: ";
+    std::cin >> destinoLinha;
+
+    std::cout << "Digite a coluna destino: ";
+    std::cin >> destinoColuna;
+
+    i++;
+
+  } while (tabuleiro[destinoLinha][destinoColuna] != 'X');
+
+  if (tabuleiro[destinoLinha][destinoColuna] == 'X') {
+    tabuleiro[destinoLinha][destinoColuna] = 'P';
+    tabuleiro[linhaPeca][colunaPeca] = ' ';
+    limparTabuleiro();
+  }
+}
+
+void movimentarTorrePreta(int linhaPeca, int colunaPeca) {
+}
+
 int main() {
 
   int i = 0;
@@ -110,6 +168,18 @@ int main() {
 
     if (tabuleiro[linhaPeca][colunaPeca] == 'P') {
       movimentarPeaoBranco(linhaPeca, colunaPeca);
+    }
+
+    if (tabuleiro[linhaPeca][colunaPeca] == 'p') {
+      movimentarPeaoPreto(linhaPeca, colunaPeca);
+    }
+
+    if (tabuleiro[linhaPeca][colunaPeca] == 'T') {
+      movimentarTorreBranca(linhaPeca, colunaPeca);
+    }
+
+    if (tabuleiro[linhaPeca][colunaPeca] == 't') {
+      movimentarTorrePreta(linhaPeca, colunaPeca);
     }
 
     colocarTabuleiro();
