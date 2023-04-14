@@ -1,7 +1,7 @@
 #include <cstdlib>
 #include <iostream>
-#include <string>
 #include <stdlib.h>
+#include <string>
 
 std::string tabuleiro[9][9]{
     " ",      "1",      "2",      "3",      "4",      "5",      "6",
@@ -29,7 +29,7 @@ void limparTabuleiro() {
 }
 
 void colocarTabuleiro() {
-system("clear");
+  system("clear");
 
   for (int linha = 0; linha < 9; linha++) {
     std::cout << std::endl;
@@ -143,21 +143,20 @@ void movimentarTorre(int linhaPeca, int colunaPeca) {
 
 void movimentarCavalo(int linhaPeca, int colunaPeca) {
 
-  if (tabuleiro[linhaPeca + 2][colunaPeca + 1] == " ") {
+  if (tabuleiro[linhaPeca + 2][colunaPeca + 1] == " ")
     tabuleiro[linhaPeca + 2][colunaPeca + 1] = "X";
-  }
 
-  if (tabuleiro[linhaPeca + 2][colunaPeca - 1] == " ") {
+  if (tabuleiro[linhaPeca + 2][colunaPeca - 1] == " ")
     tabuleiro[linhaPeca + 2][colunaPeca - 1] = "X";
-  }
 
-  if (tabuleiro[linhaPeca - 2][colunaPeca + 1] == " ") {
+  if (linhaPeca - 2 < 0) {
+    return;
+  }
+  if (tabuleiro[linhaPeca - 2][colunaPeca + 1] == " ")
     tabuleiro[linhaPeca - 2][colunaPeca + 1] = "X";
-  }
 
-  if (tabuleiro[linhaPeca - 2][colunaPeca - 1] == " ") {
+  if (tabuleiro[linhaPeca - 2][colunaPeca - 1] == " ")
     tabuleiro[linhaPeca - 2][colunaPeca - 1] = "X";
-  }
 }
 
 void movimentarRei(int linhaPeca, int colunaPeca) {
