@@ -1,26 +1,35 @@
+#include <cstdlib>
 #include <iostream>
+#include <string>
+#include <stdlib.h>
 
-char tabuleiro[9][9] = {
-
-    ' ', '1', '2', '3', '4', '5', '6', '7', '8', '1', 't', 'c', 'b', 'q',
-    'r', 'b', 'c', 't', '2', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', '3',
-    ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '4', ' ', ' ', ' ', ' ', ' ',
-    ' ', ' ', ' ', '5', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '6', ' ',
-    ' ', ' ', ' ', ' ', ' ', ' ', ' ', '7', 'P', 'P', 'P', 'P', 'P', 'P',
-    'P', 'P', '8', 'T', 'C', 'B', 'Q', 'R', 'B', 'C', 'T',
+std::string tabuleiro[9][9]{
+    " ",      "1",      "2",      "3",      "4",      "5",      "6",
+    "7",      "8",      "1",      "\u265C", "\u265E", "\u265D", "\u265B",
+    "\u265A", "\u265D", "\u265E", "\u265C", "2",      "\u265F", "\u265F",
+    "\u265F", "\u265F", "\u265F", "\u265F", "\u265F", "\u265F", "3",
+    " ",      " ",      " ",      " ",      " ",      " ",      " ",
+    " ",      "4",      " ",      " ",      " ",      " ",      " ",
+    " ",      " ",      " ",      "5",      " ",      " ",      " ",
+    " ",      " ",      " ",      " ",      " ",      "6",      " ",
+    " ",      " ",      " ",      " ",      " ",      " ",      " ",
+    "7",      "\u2659", "\u2659", "\u2659", "\u2659", "\u2659", "\u2659",
+    "\u2659", "\u2659", "8",      "\u2656", "\u2658", "\u2657", "\u2655",
+    "\u2654", "\u2657", "\u2658", "\u2656",
 };
 
 void limparTabuleiro() {
   for (int linha = 0; linha < 9; linha++) {
     for (int coluna = 0; coluna < 9; coluna++) {
-      if (tabuleiro[linha][coluna] == 'X') {
-        tabuleiro[linha][coluna] = ' ';
+      if (tabuleiro[linha][coluna] == "X") {
+        tabuleiro[linha][coluna] = " ";
       }
     }
   }
 }
 
 void colocarTabuleiro() {
+system("clear");
 
   for (int linha = 0; linha < 9; linha++) {
     std::cout << std::endl;
@@ -41,7 +50,7 @@ void validarPosicao(int linhaPeca, int colunaPeca) {
 
   int destinoLinha;
   int destinoColuna;
-  char letra = tabuleiro[linhaPeca][colunaPeca];
+  std::string letra = tabuleiro[linhaPeca][colunaPeca];
   int i = 0;
 
   do {
@@ -61,11 +70,11 @@ void validarPosicao(int linhaPeca, int colunaPeca) {
 
     i++;
 
-  } while (tabuleiro[destinoLinha][destinoColuna] != 'X');
+  } while (tabuleiro[destinoLinha][destinoColuna] != "X");
 
-  if (tabuleiro[destinoLinha][destinoColuna] == 'X') {
+  if (tabuleiro[destinoLinha][destinoColuna] == "X") {
     tabuleiro[destinoLinha][destinoColuna] = letra;
-    tabuleiro[linhaPeca][colunaPeca] = ' ';
+    tabuleiro[linhaPeca][colunaPeca] = " ";
     limparTabuleiro();
   }
 }
@@ -74,29 +83,29 @@ void movimentarBispo(int linhaPeca, int colunaPeca) {
 
   int i = 1;
 
-  while (tabuleiro[linhaPeca + i][colunaPeca + i] == ' ') {
-    tabuleiro[linhaPeca + i][colunaPeca + i] = 'X';
+  while (tabuleiro[linhaPeca + i][colunaPeca + i] == " ") {
+    tabuleiro[linhaPeca + i][colunaPeca + i] = "X";
     i++;
   }
 
   i = 1;
 
-  while (tabuleiro[linhaPeca - i][colunaPeca + i] == ' ') {
-    tabuleiro[linhaPeca - i][colunaPeca + i] = 'X';
+  while (tabuleiro[linhaPeca - i][colunaPeca + i] == " ") {
+    tabuleiro[linhaPeca - i][colunaPeca + i] = "X";
     i++;
   }
 
   i = 1;
 
-  while (tabuleiro[linhaPeca - i][colunaPeca - i] == ' ') {
-    tabuleiro[linhaPeca - i][colunaPeca - i] = 'X';
+  while (tabuleiro[linhaPeca - i][colunaPeca - i] == " ") {
+    tabuleiro[linhaPeca - i][colunaPeca - i] = "X";
     i++;
   }
 
   i = 1;
 
-  while (tabuleiro[linhaPeca + i][colunaPeca - i] == ' ') {
-    tabuleiro[linhaPeca + i][colunaPeca - i] = 'X';
+  while (tabuleiro[linhaPeca + i][colunaPeca - i] == " ") {
+    tabuleiro[linhaPeca + i][colunaPeca - i] = "X";
     i++;
   }
 }
@@ -105,49 +114,49 @@ void movimentarTorre(int linhaPeca, int colunaPeca) {
 
   int contador = 1;
 
-  while (tabuleiro[linhaPeca + contador][colunaPeca] == ' ') {
-    tabuleiro[linhaPeca + contador][colunaPeca] = 'X';
+  while (tabuleiro[linhaPeca + contador][colunaPeca] == " ") {
+    tabuleiro[linhaPeca + contador][colunaPeca] = "X";
     contador++;
   }
 
   contador = 1;
 
-  while (tabuleiro[linhaPeca - contador][colunaPeca] == ' ') {
-    tabuleiro[linhaPeca - contador][colunaPeca] = 'X';
+  while (tabuleiro[linhaPeca - contador][colunaPeca] == " ") {
+    tabuleiro[linhaPeca - contador][colunaPeca] = "X";
     contador++;
   }
 
   contador = 1;
 
-  while (tabuleiro[linhaPeca][colunaPeca - contador] == ' ') {
-    tabuleiro[linhaPeca][colunaPeca - contador] = 'X';
+  while (tabuleiro[linhaPeca][colunaPeca - contador] == " ") {
+    tabuleiro[linhaPeca][colunaPeca - contador] = "X";
     contador++;
   }
 
   contador = 1;
 
-  while (tabuleiro[linhaPeca][colunaPeca + contador] == ' ') {
-    tabuleiro[linhaPeca][colunaPeca + contador] = 'X';
+  while (tabuleiro[linhaPeca][colunaPeca + contador] == " ") {
+    tabuleiro[linhaPeca][colunaPeca + contador] = "X";
     contador++;
   }
 }
 
 void movimentarCavalo(int linhaPeca, int colunaPeca) {
 
-  if (tabuleiro[linhaPeca + 2][colunaPeca + 1] == ' ') {
-    tabuleiro[linhaPeca + 2][colunaPeca + 1] = 'X';
+  if (tabuleiro[linhaPeca + 2][colunaPeca + 1] == " ") {
+    tabuleiro[linhaPeca + 2][colunaPeca + 1] = "X";
   }
 
-  if (tabuleiro[linhaPeca + 2][colunaPeca - 1] == ' ') {
-    tabuleiro[linhaPeca + 2][colunaPeca - 1] = 'X';
+  if (tabuleiro[linhaPeca + 2][colunaPeca - 1] == " ") {
+    tabuleiro[linhaPeca + 2][colunaPeca - 1] = "X";
   }
 
-  if (tabuleiro[linhaPeca - 2][colunaPeca + 1] == ' ') {
-    tabuleiro[linhaPeca - 2][colunaPeca + 1] = 'X';
+  if (tabuleiro[linhaPeca - 2][colunaPeca + 1] == " ") {
+    tabuleiro[linhaPeca - 2][colunaPeca + 1] = "X";
   }
 
-  if (tabuleiro[linhaPeca - 2][colunaPeca - 1] == ' ') {
-    tabuleiro[linhaPeca - 2][colunaPeca - 1] = 'X';
+  if (tabuleiro[linhaPeca - 2][colunaPeca - 1] == " ") {
+    tabuleiro[linhaPeca - 2][colunaPeca - 1] = "X";
   }
 }
 
@@ -156,24 +165,24 @@ void movimentarRei(int linhaPeca, int colunaPeca) {
   int i = -1;
 
   while (i < 2) {
-    if (tabuleiro[linhaPeca + 1][colunaPeca + i] == ' ')
-      tabuleiro[linhaPeca + 1][colunaPeca + i] = 'X';
+    if (tabuleiro[linhaPeca + 1][colunaPeca + i] == " ")
+      tabuleiro[linhaPeca + 1][colunaPeca + i] = "X";
     i++;
   }
 
   i = -1;
 
   while (i < 2) {
-    if (tabuleiro[linhaPeca - 1][colunaPeca + i] == ' ')
-      tabuleiro[linhaPeca - 1][colunaPeca + i] = 'X';
+    if (tabuleiro[linhaPeca - 1][colunaPeca + i] == " ")
+      tabuleiro[linhaPeca - 1][colunaPeca + i] = "X";
     i++;
   }
 
-  if (tabuleiro[linhaPeca][colunaPeca + 1] == ' ')
-    tabuleiro[linhaPeca][colunaPeca + 1] = 'X';
+  if (tabuleiro[linhaPeca][colunaPeca + 1] == " ")
+    tabuleiro[linhaPeca][colunaPeca + 1] = "X";
 
-  if (tabuleiro[linhaPeca][colunaPeca - 1] == ' ')
-    tabuleiro[linhaPeca][colunaPeca - 1] = 'X';
+  if (tabuleiro[linhaPeca][colunaPeca - 1] == " ")
+    tabuleiro[linhaPeca][colunaPeca - 1] = "X";
 }
 
 // PEÇAS BRANCAS
@@ -207,15 +216,15 @@ void movimentarBispoBranco(int linhaPeca, int colunaPeca) {
 
 void movimentarPeaoBranco(int linhaPeca, int colunaPeca) {
 
-  char linhaInicial = '7';
+  std::string linhaInicial = "7";
 
   if (*tabuleiro[linhaPeca] == linhaInicial &&
-      tabuleiro[linhaPeca - 1][colunaPeca] == ' ' &&
-      tabuleiro[linhaPeca - 2][colunaPeca] == ' ') {
-    tabuleiro[linhaPeca - 1][colunaPeca] = 'X';
-    tabuleiro[linhaPeca - 2][colunaPeca] = 'X';
-  } else if (tabuleiro[linhaPeca - 1][colunaPeca] == ' ') {
-    tabuleiro[linhaPeca - 1][colunaPeca] = 'X';
+      tabuleiro[linhaPeca - 1][colunaPeca] == " " &&
+      tabuleiro[linhaPeca - 2][colunaPeca] == " ") {
+    tabuleiro[linhaPeca - 1][colunaPeca] = "X";
+    tabuleiro[linhaPeca - 2][colunaPeca] = "X";
+  } else if (tabuleiro[linhaPeca - 1][colunaPeca] == " ") {
+    tabuleiro[linhaPeca - 1][colunaPeca] = "X";
 
   } else {
     std::cout << "Movimento invalido.";
@@ -290,15 +299,15 @@ void movimentarCavaloPreto(int linhaPeca, int colunaPeca) {
 
 void movimentarPeaoPreto(int linhaPeca, int colunaPeca) {
 
-  char linhaInicial = '2';
+  std::string linhaInicial = "2";
 
   if (*tabuleiro[linhaPeca] == linhaInicial &&
-      tabuleiro[linhaPeca + 1][colunaPeca] == ' ' &&
-      tabuleiro[linhaPeca + 2][colunaPeca] == ' ') {
-    tabuleiro[linhaPeca + 1][colunaPeca] = 'X';
-    tabuleiro[linhaPeca + 2][colunaPeca] = 'X';
-  } else if (tabuleiro[linhaPeca + 1][colunaPeca] == ' ') {
-    tabuleiro[linhaPeca + 1][colunaPeca] = 'X';
+      tabuleiro[linhaPeca + 1][colunaPeca] == " " &&
+      tabuleiro[linhaPeca + 2][colunaPeca] == " ") {
+    tabuleiro[linhaPeca + 1][colunaPeca] = "X";
+    tabuleiro[linhaPeca + 2][colunaPeca] = "X";
+  } else if (tabuleiro[linhaPeca + 1][colunaPeca] == " ") {
+    tabuleiro[linhaPeca + 1][colunaPeca] = "X";
 
   } else {
     std::cout << "Movimento invalido.";
@@ -341,52 +350,51 @@ int main() {
     std::cout << "Digite a coluna da peça: ";
     std::cin >> colunaPeca;
 
-    if (tabuleiro[linhaPeca][colunaPeca] == 'P') {
+    if (tabuleiro[linhaPeca][colunaPeca] == "\u2659") {
       movimentarPeaoBranco(linhaPeca, colunaPeca);
     }
 
-    if (tabuleiro[linhaPeca][colunaPeca] == 'p') {
+    if (tabuleiro[linhaPeca][colunaPeca] == "\u265F") {
       movimentarPeaoPreto(linhaPeca, colunaPeca);
     }
 
-    if (tabuleiro[linhaPeca][colunaPeca] == 'T') {
+    if (tabuleiro[linhaPeca][colunaPeca] == "\u2656") {
       movimentarTorreBranca(linhaPeca, colunaPeca);
     }
 
-    if (tabuleiro[linhaPeca][colunaPeca] == 't') {
+    if (tabuleiro[linhaPeca][colunaPeca] == "\u265c") {
       movimentarTorrePreta(linhaPeca, colunaPeca);
     }
 
-    if (tabuleiro[linhaPeca][colunaPeca] == 'C') {
+    if (tabuleiro[linhaPeca][colunaPeca] == "\u2658") {
       movimentarCavaloBranco(linhaPeca, colunaPeca);
     }
 
-    if (tabuleiro[linhaPeca][colunaPeca] == 'c') {
+    if (tabuleiro[linhaPeca][colunaPeca] == "\u265E") {
       movimentarCavaloPreto(linhaPeca, colunaPeca);
     }
 
-    if (tabuleiro[linhaPeca][colunaPeca] == 'B') {
+    if (tabuleiro[linhaPeca][colunaPeca] == "\u2657") {
       movimentarBispoBranco(linhaPeca, colunaPeca);
     }
 
-    if (tabuleiro[linhaPeca][colunaPeca] == 'b') {
+    if (tabuleiro[linhaPeca][colunaPeca] == "\u265D") {
       movimentarBispoPreto(linhaPeca, colunaPeca);
     }
 
-    if (tabuleiro[linhaPeca][colunaPeca] == 'Q') {
+    if (tabuleiro[linhaPeca][colunaPeca] == "\u2655") {
       movimentarRainhaBranca(linhaPeca, colunaPeca);
     }
 
-    if (tabuleiro[linhaPeca][colunaPeca] == 'q') {
+    if (tabuleiro[linhaPeca][colunaPeca] == "\u265B") {
       movimentarRainhaPreta(linhaPeca, colunaPeca);
     }
 
-
-    if (tabuleiro[linhaPeca][colunaPeca] == 'R') {
+    if (tabuleiro[linhaPeca][colunaPeca] == "\u2655") {
       movimentarReiBranco(linhaPeca, colunaPeca);
     }
 
-    if (tabuleiro[linhaPeca][colunaPeca] == 'r') {
+    if (tabuleiro[linhaPeca][colunaPeca] == "\u265A") {
       movimentarReiPreto(linhaPeca, colunaPeca);
     }
 
